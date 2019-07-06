@@ -55,14 +55,14 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
-        <version>2.3.1</version>
+        <version>${mvn-jar-version}</version>
         <configuration>
           <classesDirectory>${basedir}/target/generated-sources/hawtjni/lib</classesDirectory>
         </configuration>
       </plugin>
       <plugin>
         <groupId>org.fusesource.hawtjni</groupId>
-        <artifactId>maven-hawtjni-plugin</artifactId>
+        <artifactId>hawtjni-maven-plugin</artifactId>
         <version>${hawtjni-version}</version>
         <executions>
           <execution>
@@ -86,6 +86,33 @@
           </configureArgs>
         </configuration>
       </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.1.0</version>
+				<executions>
+					<execution>
+						<id>copy-dll</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${basedir}/target/generated-sources/hawtjni/lib/META-INF/native/linux64</outputDirectory>
+							<overwrite>true</overwrite>
+							<resources>
+								<resource>
+									<directory>${basedir}/../../liblmdb/</directory>
+									<filtering>false</filtering>
+									<includes>
+										<include>liblmdb.so</include>
+									</includes>	
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
     </plugins>
   </build>
 </project>

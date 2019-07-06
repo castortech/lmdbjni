@@ -63,6 +63,16 @@
       <artifactId>lmdbjni-win64</artifactId>
       <version>99-master-SNAPSHOT</version>
     </dependency>
+    <dependency>
+      <groupId>org.fusesource.lmdbjni</groupId>
+      <artifactId>lmdbjni-linux64</artifactId>
+      <version>99-master-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.fusesource.lmdbjni</groupId>
+      <artifactId>lmdbjni-osx64</artifactId>
+      <version>99-master-SNAPSHOT</version>
+    </dependency>
     
   </dependencies>
 
