@@ -29,7 +29,6 @@ import java.util.NoSuchElementException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static org.fusesource.lmdbjni.Constants.NOMETASYNC;
-import static org.fusesource.lmdbjni.Constants.NOSYNC;
 
 /**
  * Implements the LevelDB API using LMDB.

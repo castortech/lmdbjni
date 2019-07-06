@@ -32,6 +32,7 @@ import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.*;
+
 import static org.fusesource.lmdbjni.Constants.*;
 
 /**
@@ -86,16 +87,19 @@ public class SecondaryCursorTest {
 
 	//standard puts
 	private void doTest1() {
-		try (Transaction tx = env.createWriteTransaction()) {
-			try (Cursor cursor = db.openCursor(tx)) {
-				cursor.put(bytes("Tampa"), bytes("green"), 0);
-				cursor.put(bytes("London"), bytes("red"), 0);
+		TimeUtils.runWithNanoTiming(()-> {
+			try (Transaction tx = env.createWriteTransaction()) {
+				try (Cursor cursor = db.openCursor(tx)) {
+					cursor.put(bytes("Tampa"), bytes("green"), 0);
+					cursor.put(bytes("London"), bytes("red"), 0);
+				}
+				tx.commit();
+				
+				// secondary get after put
+				assertArrayEquals(secDb.get(bytes("red")), bytes("London"));
+				return null;
 			}
-			tx.commit();
-			
-			// secondary get after put
-			assertArrayEquals(secDb.get(bytes("red")), bytes("London"));
-		}
+		});
 	}
 	
 	// standard put & get back

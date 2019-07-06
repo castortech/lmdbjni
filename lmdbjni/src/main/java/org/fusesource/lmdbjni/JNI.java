@@ -484,8 +484,9 @@ public class JNI {
      * <a href="http://symas.com/mdb/doc/group__mdb.html#">details</a>
      */
     @JniMethod
-  public static final native int mdb_txn_id(
-    @JniArg(cast = "MDB_txn *") long txn);
+    public static final native int mdb_txn_id(
+    				@JniArg(cast = "MDB_txn *") long txn);
+    
   /**
    * <a href="http://symas.com/mdb/doc/group__mdb.html#">details</a>
    */

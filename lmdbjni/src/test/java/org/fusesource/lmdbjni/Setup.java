@@ -2,6 +2,7 @@ package org.fusesource.lmdbjni;
 
 import java.io.File;
 
+@SuppressWarnings("nls")
 public class Setup {
   private static String OS = System.getProperty("os.name").toLowerCase();
 
@@ -13,7 +14,7 @@ public class Setup {
     return (OS.indexOf("mac") >= 0);
   }
 
-  public static void setLmdbLibraryPath() {
+	public static void setLmdbLibraryPath() {
     File path = new File(".");
     if (isWindows()) {
       path = new File(path, "../lmdbjni-win64/target/native-build/target/x64-release/lib");
